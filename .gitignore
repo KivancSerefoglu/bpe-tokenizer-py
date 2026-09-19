@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment and tooling
+.env
+.vscode/
+
+# Temporary Office files
+~$*
+
+# Test and coverage output
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Assignment/runtime output
+*.out
+*.log
