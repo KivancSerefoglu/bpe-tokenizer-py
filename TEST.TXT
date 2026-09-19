@@ -1,0 +1,12 @@
+The unhappy citizens were speaking quickly, and the kingdom's
+enemies gathered at the gate.
+
+Good morning! Is't not a strange thing, that 42 of the lords
+should be unresolved, unspoken for, and utterly friendless?
+
+Speak, speak -- tell me plainly: who among them is truly
+resolved to proceed further?
+
+Tokenization tests often reveal prefixes (un-, re-, pre-) and
+suffixes (-ing, -ed, -ly, -ness, -ment) that the learner found
+during training; naïve café input may appear too.
