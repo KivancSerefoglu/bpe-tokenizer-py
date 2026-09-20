@@ -1,7 +1,7 @@
 import argparse
 import re
 from pathlib import Path
-import string
+from collections import Counter
 
 
 STOP = "|"
@@ -17,6 +17,12 @@ def clean_input(text: str) -> str:
 
 def txt_into_words(text: str) -> list[str]:
     return clean_input(text).split()
+
+
+def build_corpus(words: list[str]) -> dict[tuple[str, ...], int]:
+
+    return {tuple(word) + (STOP,): count
+            for word, count in Counter(words).items()}
 
 
 def main():
