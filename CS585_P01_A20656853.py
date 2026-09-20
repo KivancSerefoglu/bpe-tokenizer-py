@@ -24,6 +24,16 @@ def build_corpus(words: list[str]) -> dict[tuple[str, ...], int]:
     return {tuple(word) + (STOP,): count
             for word, count in Counter(words).items()}
 
+def get_pair_counts(corpus: dict[tuple[str, ...], int]) -> Counter:
+    pair_counts = Counter()
+
+    for word, frequency in corpus.items():
+        for i in range(len(word) - 1):
+            pair = (word[i], word[i + 1])
+            pair_counts[pair] += frequency
+
+    return pair_counts
+
 
 def main():
 
@@ -35,8 +45,9 @@ def main():
 
     args = parser.parse_args()
 
-    if not 1 <= args.K <= 5:
-        parser.error("K must be between 1 and 5")
+    K = args.K  
+    if not 1 <= K <= 5:
+        K=5
 
     for file_path, file_label in (
         (args.TRAIN_FILE, "Training"),
@@ -45,14 +56,14 @@ def main():
         if not file_path.is_file():
             parser.error(f"{file_label} file does not exist: {file_path}")
 
-    K = args.K
+    
     train_text = read_text_file(args.TRAIN_FILE)
     test_text = read_text_file(args.TEST_FILE)
 
     train_text= txt_into_words(train_text)
     test_text = txt_into_words(test_text)
 
-    print(test_text)
+    print(build_corpus(test_text))
 
 
     
