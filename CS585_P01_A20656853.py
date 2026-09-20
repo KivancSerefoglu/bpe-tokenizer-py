@@ -4,28 +4,19 @@ from pathlib import Path
 import string
 
 
-def clean_input(text):
-    text = "".join(
-        character
-        for character in text
-        if character == " " or character.isprintable()
-    )
-
-    return text.translate(
-        str.maketrans("", "", string.punctuation)
-    )
-
-def txt_into_characters(text: str):
-
-    cleaned_text = re.sub(r"\s+", "|", clean_input(text))
-    
-    return cleaned_text
+STOP = "|"
 
 
+def read_text_file(file_name: str) -> str:
+    return Path(file_name).read_text(encoding="utf-8")
 
 
-def read_text_file(file_path: Path) -> str:
-    return file_path.read_text(encoding="utf-8")
+def clean_input(text: str) -> str:
+    return re.sub(r"[^A-Za-z]+", " ", text).strip()
+
+
+def txt_into_words(text: str) -> list[str]:
+    return clean_input(text).split()
 
 
 def main():
@@ -52,8 +43,8 @@ def main():
     train_text = read_text_file(args.TRAIN_FILE)
     test_text = read_text_file(args.TEST_FILE)
 
-    train_text= txt_into_characters(train_text)
-    test_text = txt_into_characters(test_text)
+    train_text= txt_into_words(train_text)
+    test_text = txt_into_words(test_text)
 
     print(test_text)
 
