@@ -17,11 +17,8 @@ def clean_input(text):
 
 def txt_into_characters(text: str):
 
-    cleaned_text = clean_input(text)
-
-
-    cleaned_text  = re.sub(r"\s+", "|", cleaned_text)
-
+    cleaned_text = re.sub(r"\s+", "|", clean_input(text))
+    
     return cleaned_text
 
 
